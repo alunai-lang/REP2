@@ -62,12 +62,12 @@ describe('Prueba 3: Registrar un producto', () => {
     cy.screenshot('06-validacion-antes-envio');
     
     // Buscar botón de envío
-    cy.get('button[type="submit"]', { timeout: 3000 }).then(($btn) => {
-      if ($btn.length > 0) {
-        cy.wrap($btn).click({ force: true });
-        cy.screenshot('06-validacion-errores');
-      }
-    });
+cy.get('form button[type="submit"]', { timeout: 3000 }).then(($btn) => {
+  if ($btn.length > 0) {
+    cy.wrap($btn).click({ force: true });
+    cy.screenshot('06-validacion-errores');
+  }
+});
     
     // Captura final
     cy.get('body').should('be.visible');
