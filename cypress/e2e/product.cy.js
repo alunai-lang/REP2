@@ -33,15 +33,16 @@ describe('Prueba 3: Registrar un producto', () => {
     cy.wait(500);
     cy.screenshot('05-producto-formulario-lleno');
     
-    // Buscar botón de envío
-    cy.get('button[type="submit"]', { timeout: 3000 }).then(($btn) => {
-      if ($btn.length > 0 && !$btn.attr('disabled')) {
-        cy.wrap($btn).click({ force: true });
-        cy.screenshot('05-producto-enviado');
-      } else {
-        cy.screenshot('05-producto-formulario-listo');
-      }
-    });
+// Buscar botón de envío
+cy.get('button[type="submit"]', { timeout: 3000 }).then(($btn) => {
+  if ($btn.length > 0 && !$btn.attr('disabled')) {
+    // $btn[0] toma el primer botón exacto de la lista de elementos encontrados
+    cy.wrap($btn[0]).click({ force: true });
+    cy.screenshot('05-producto-enviado');
+  } else {
+    cy.screenshot('05-producto-formulario-listo');
+  }
+});
     
     // Validación final
     cy.get('body').should('be.visible');
